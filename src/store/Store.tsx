@@ -16,8 +16,7 @@ type StoreData = {
     setData: React.Dispatch<React.SetStateAction<arrayData[]>>,
     dataIn: (newData: arrayData) => void,
     removeData: (userDataToRemove: string) => void,
-    isPassOK: boolean,
-    handlePassword: (e: string) => void,
+    checkPassword: () => boolean,
 }
 
 type arrayData = {
@@ -38,8 +37,7 @@ export const Store = createContext<StoreData>({
     setData:()=>{},
     dataIn:()=>{},
     removeData:()=>{},
-    isPassOK:false,
-    handlePassword:()=>{},
+    checkPassword: () => false,
 });
 
 
@@ -47,7 +45,6 @@ const StoreProvider = (props:StoreProviderProps) => {
 
     const [user,setUser] = useState('');
     const [password,setPassword] = useState('');
-    const [isPassOK,setIsPassOK] = useState(false);
     const [data,setData] = useState<arrayData[]>([]);
 
     //Saving data to Encrypted Storage
@@ -84,34 +81,35 @@ const StoreProvider = (props:StoreProviderProps) => {
         }
     };
 
-    //Checking password
-    const handlePassword = (e:string) => {
-        let isValid = (
-            e.length > 8 &&
-            /[A-Z]/.test(e) &&
-            /[a-z]/.test(e) &&
-            /\d/.test(e) &&
-            /[@$!%*?&]/.test(e)
+    //Checking if password meets our requirements
+    const checkPassword = () => {
+        return (
+            password.length > 8 &&
+            /[A-Z]/.test(password) &&
+            /[a-z]/.test(password) &&
+            /[0-9]/.test(password) &&
+            /[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]/.test(password)
         );
-        if(isValid){
-            setIsPassOK(true);
-            setPassword(e);
-        }
-        else{
-            setIsPassOK(false);
-        }
     };
 
     //Getting the input of the user and saving it to Encrypted Storage
     const dataIn = (newData:arrayData) => {
-        setData((prev)=>{
-            const updatedData = [...prev,newData];
-            saveToStorage(updatedData);
-            return updatedData;
-        });
-        setUser('');
-        setPassword('');
-        setIsPassOK(false);
+        const isValid = checkPassword();
+        if(isValid){
+            setData((prev)=>{
+                const updatedData = [...prev,newData];
+                saveToStorage(updatedData);
+                return updatedData;
+            });
+            setUser('');
+            setPassword('');
+        }
+        else{
+            Snackbar.show({
+                numberOfLines:2,
+                text:'Password must be of minimum 8 letters & contain uppercase,lowercase,numbers and special characters',
+            });
+        }
     };
 
     //Deleting data and updating the Encrypted Storage
@@ -130,7 +128,7 @@ const StoreProvider = (props:StoreProviderProps) => {
 
     const value = {
         user,setUser,password,setPassword,data,setData,
-        dataIn,removeData,isPassOK,handlePassword,
+        dataIn,removeData,checkPassword,
     };
 
     return(

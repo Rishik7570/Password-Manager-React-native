@@ -8,7 +8,7 @@ export const startingScreenStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0A3D62',
+    backgroundColor: '#ffffff',
     padding: 20,
   },
   title: {
@@ -33,9 +33,88 @@ export const homeStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0A3D62',
+    backgroundColor: '#ffffff',
     padding: 20,
+  },
+  navigateBtn: {
+    position: 'absolute',
+    top: 90,
+    backgroundColor: '#efd9b4',
+    padding: 10,
+  },
+  inputContainer: {
+    padding: 20,
+    gap: '10',
+  },
+  inputField: {
+    width: width * 0.8,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 6,
+    padding: 10,
+    fontSize: 25,
+  },
+  inputPass: {
+    position:'absolute',
+    bottom:30,
+    right:30,
+  },
+  saveBtn: {
+    backgroundColor: '#efd9b4',
+    padding: 10,
+    width: width * 0.8,
+  },
+  allTxt: {
+    fontSize: 20,
+    textAlign: 'center',
   },
 });
 
-export const passwordListStyles = StyleSheet.create({});
+export const passwordListStyles = StyleSheet.create({
+  container:{
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'space-between',
+    gap:20,
+  },
+  backBtn:{
+    marginTop:50,
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    backgroundColor: '#efd9b4',
+    gap:10,
+    padding:5,
+  },
+  backBtnTxt:{
+    fontSize:20,
+  },
+  headerTxt:{
+    fontSize:30,
+  },
+  cardContainer:{
+    width:width * 0.8,
+    backgroundColor:'#A4B0BD',
+  },
+  card:{
+    borderWidth:1,
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    padding:10,
+  },
+  cardData:{
+    display:'flex',
+  },
+  cardTxt:{
+    fontSize:25,
+  },
+  cardIcon:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    gap:10,
+  },
+});
