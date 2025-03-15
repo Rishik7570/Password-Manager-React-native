@@ -37,10 +37,9 @@ export const homeStyles = StyleSheet.create({
     padding: 20,
   },
   navigateBtn: {
-    position: 'absolute',
-    top: 90,
-    backgroundColor: '#efd9b4',
+    alignSelf:'center',
     padding: 10,
+    margin:50,
   },
   inputContainer: {
     padding: 20,
@@ -60,13 +59,24 @@ export const homeStyles = StyleSheet.create({
     right:30,
   },
   saveBtn: {
-    backgroundColor: '#efd9b4',
-    padding: 10,
     width: width * 0.8,
   },
   allTxt: {
     fontSize: 20,
     textAlign: 'center',
+    padding:10,
+  },
+  whiteTxt:{
+    color:'white',
+  },
+  whiteBg:{
+    backgroundColor:'#baab6a',
+  },
+  darkTxt:{
+    color:'black',
+  },
+  darkBg:{
+    backgroundColor: '#efd9b4',
   },
 });
 
@@ -116,5 +126,17 @@ export const passwordListStyles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'space-between',
     gap:10,
+  },
+  whiteTxt:{
+    color:'white',
+  },
+  whiteBg:{
+    backgroundColor:'#baab6a',
+  },
+  darkTxt:{
+    color:'black',
+  },
+  darkBg:{
+    backgroundColor: '#efd9b4',
   },
 });
